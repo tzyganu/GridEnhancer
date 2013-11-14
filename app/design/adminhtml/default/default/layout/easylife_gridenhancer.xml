@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Easylife_GridEnhancer extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE_GRID_ENHANCER.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category       Easylife
+ * @package        Easylife_GridEnhancer
+ * @copyright      Copyright (c) 2013
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * admin layout fille
+ *
+ * @category    Easylife
+ * @package     Easylife_GridEnhancer
+ * @author      Marius Strajeru <marius.strajeru@gmail.com>
+ */
+-->
+<config>
+    <adminhtml_gridenhancer_product_edit>
+        <reference name="head">
+            <action method="addJs">
+                <js>easylife_gridenhancer/product.js</js>
+            </action>
+        </reference>
+        <reference name="menu">
+            <action method="setActive"><active>catalog/product/easylife_gridenhancer</active></action>
+        </reference>
+        <reference name="content">
+            <block type="easylife_gridenhancer/adminhtml_product" template="easylife_gridenhancer/product.phtml" name="product_grid" as="product_grid" />
+        </reference>
+    </adminhtml_gridenhancer_product_edit>
+</config>

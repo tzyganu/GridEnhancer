@@ -1,0 +1,51 @@
+<?php
+/**
+ * Easylife_GridEnhancer extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE_GRID_ENHANCER.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category       Easylife
+ * @package        Easylife_GridEnhancer
+ * @copyright      Copyright (c) 2013
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * template for product grid management
+ *
+ * @category    Easylife
+ * @package     Easylife_GridEnhancer
+ * @author      Marius Strajeru <marius.strajeru@gmail.com>
+ */
+?>
+<div class="content-header">
+    <h3 class="icon-head"><?php echo $this->getHeaderText() ?></h3>
+    <p class="content-buttons form-buttons">
+        <?php echo $this->getBackButtonHtml() ?>
+        <?php echo $this->getCancelButtonHtml() ?>
+        <?php echo $this->getAddFieldButtonHtml() ?>
+        <?php echo $this->getSaveButtonHtml() ?>
+        <?php if (Mage::registry('current_settings') && Mage::registry('current_settings')->getId()) : ?>
+            <?php echo $this->getDeleteButtonHtml() ?>
+        <?php endif;?>
+    </p>
+</div>
+    <div id="form_container">
+        <?php echo $this->getFormHtml();?>
+    </div>
+<div style="display:none">
+    <table>
+        <tbody id="field_template">
+            <?php echo $this->getFieldTemplate();?>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    var editForm = new varienForm('edit_form');
+    var gridEnahncer = new Easylife_GridEnhancer.Product('import_form', <?php echo $this->getConfig()?>);
+</script>
+

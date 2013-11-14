@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Easylife_GridEnhancer extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE_GRID_ENHANCER.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category       Easylife
+ * @package        Easylife_GridEnhancer
+ * @copyright      Copyright (c) 2013
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <catalog>
+                        <children>
+                            <products>
+                                <children>
+                                    <easylife_gridenhancer translate="title" module="easylife_gridenhancer">
+                                        <title>Manage product grid columns.</title>
+                                    </easylife_gridenhancer>
+                                </children>
+                            </products>
+                        </children>
+                    </catalog>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <!-- Maybe not the best idea to add a menu item -->
+    <!--<menu>
+        <catalog>
+            <children>
+                <products>
+                    <children>
+                        <easylife_gridenhancer translate="title" module="easylife_gridenhancer">
+                            <title>Manage product grid columns.</title>
+                            <action>adminhtml/gridenhancer_product</action>
+                            <sort_order>10</sort_order>
+                        </easylife_gridenhancer>
+                    </children>
+                </products>
+            </children>
+        </catalog>
+    </menu>-->
+</config>

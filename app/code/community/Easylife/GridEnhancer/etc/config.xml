@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Easylife_GridEnhancer extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE_GRID_ENHANCER.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category       Easylife
+ * @package        Easylife_GridEnhancer
+ * @copyright      Copyright (c) 2013
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <Easylife_GridEnhancer>
+            <version>0.1.0</version>
+        </Easylife_GridEnhancer>
+    </modules>
+    <global>
+        <blocks>
+            <easylife_gridenhancer>
+                <class>Easylife_GridEnhancer_Block</class>
+            </easylife_gridenhancer>
+        </blocks>
+        <models>
+            <easylife_gridenhancer>
+                <class>Easylife_GridEnhancer_Model</class>
+                <resourceModel>easylife_gridenhancer_resource</resourceModel>
+            </easylife_gridenhancer>
+            <easylife_gridenhancer_resource>
+                <class>Easylife_GridEnhancer_Model_Resource</class>
+                <entities>
+                    <settings>
+                        <table>easylife_gridenhancer_settings</table>
+                    </settings>
+                </entities>
+            </easylife_gridenhancer_resource>
+        </models>
+        <helpers>
+            <easylife_gridenhancer>
+                <class>Easylife_GridEnhancer_Helper</class>
+            </easylife_gridenhancer>
+        </helpers>
+        <resources>
+            <easylife_gridenhancer_setup>
+                <setup>
+                    <module>Easylife_GridEnhancer</module>
+                </setup>
+            </easylife_gridenhancer_setup>
+        </resources>
+        <gridenhancer>
+            <system_attributes>
+                <product>
+                    <entity_id translate="label" module="catalog">
+                        <label>ID</label>
+                    </entity_id>
+                    <name translate="label" module="catalog">
+                        <label>Name</label>
+                    </name>
+                    <type_id translate="label" module="catalog">
+                        <label>Product type</label>
+                    </type_id>
+                    <attribute_set_id translate="label" module="catalog">
+                        <label>Attribute set</label>
+                    </attribute_set_id>
+                    <sku translate="label" module="catalog">
+                        <label>SKU</label>
+                    </sku>
+                    <price translate="label" module="catalog">
+                        <label>Price</label>
+                    </price>
+                    <qty translate="label" module="catalog">
+                        <label>Qty</label>
+                    </qty>
+                    <visibility translate="label" module="catalog">
+                        <label>Visibility</label>
+                    </visibility>
+                    <status translate="label" module="catalog">
+                        <label>Status</label>
+                    </status>
+                    <websites translate="label" module="catalog">
+                        <label>Websites</label>
+                    </websites>
+                </product>
+            </system_attributes>
+            <allowed_types>
+                <product>
+                    <text />
+                    <textarea />
+                    <price />
+                    <select />
+                    <date />
+                    <weight />
+                </product>
+            </allowed_types>
+        </gridenhancer>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Easylife_GridEnhancer before="Mage_Adminhtml">Easylife_GridEnhancer_Adminhtml</Easylife_GridEnhancer>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <easylife_gridenhancer>
+                    <file>easylife_gridenhancer.xml</file>
+                </easylife_gridenhancer>
+            </updates>
+        </layout>
+        <events>
+            <catalog_product_collection_load_before>
+                <observers>
+                    <easylife_gridenhancer>
+                        <type>singleton</type>
+                        <class>easylife_gridenhancer/observer_product</class>
+                        <method>addAttributesToCollection</method>
+                    </easylife_gridenhancer>
+                </observers>
+            </catalog_product_collection_load_before>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <easylife_gridenhancer>
+                        <type>singleton</type>
+                        <class>easylife_gridenhancer/observer_product</class>
+                        <method>addColumnsToGrid</method>
+                    </easylife_gridenhancer>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+        </events>
+        <translate>
+            <modules>
+                <Easylife_GridEnhancer>
+                    <files>
+                        <default>Easylife_GridEnhancer.csv</default>
+                    </files>
+                </Easylife_GridEnhancer>
+            </modules>
+        </translate>
+    </adminhtml>
+</config>
