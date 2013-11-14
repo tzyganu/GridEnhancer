@@ -74,6 +74,8 @@ Easylife_GridEnhancer.Product.prototype = {
                     }
                 }
             }
+            //IE wants it only this way.
+            this.fields[i].positionElement.value = currentPosition;
         }
     },
     getPositionOptions: function(){
@@ -162,7 +164,7 @@ Easylife_GridEnhancer.ProductField.prototype = {
             that.grid.setFieldsJson();
         });
         Event.observe($(this.deleteButton), 'click', function(){
-            that.delete();
+            that._delete();
         });
         if (typeof selected == "object"){
             this.element.value = selected.field;
@@ -181,7 +183,7 @@ Easylife_GridEnhancer.ProductField.prototype = {
         var index = this.element.selectedIndex;
         return (index > 0) ? this.element.options[index].innerHTML : '';
     },
-    delete: function(){
+    _delete: function(){
         this.grid.removeField(this.index);
         this.container.remove();
     },
@@ -195,9 +197,13 @@ Easylife_GridEnhancer.ProductField.prototype = {
         for (var i in allOptions){
             if (allOptions.hasOwnProperty(i)){
                 if (typeof exclude[allOptions[i].value] == "undefined" || allOptions[i].value == currentVal){
-                    this.element.options.add(new Option(allOptions[i].label, allOptions[i].value, (allOptions[i].value == currentVal) ? 'selected="selected' : ''));
+                    var option = new Option(allOptions[i].label, allOptions[i].value, (allOptions[i].value == currentVal) ? 'selected="selected' : '')
+                    this.element.options.add(option);
                 }
             }
         }
+        //IE fix. it seams IE does not take into account "selected" when building a new Option element.
+        //Damn you IE (*me waving left fist in the air*)
+        this.element.value = currentVal;
     }
 }
