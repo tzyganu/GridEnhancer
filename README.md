@@ -52,6 +52,7 @@ If you manually added columns in the product grid and they do not appear in the 
 Known issue(s):
 -------
 If you choose to add a column after the `Name` column and you look at the grid in a specific store then your new column will appear after the `Name` column and you cannot set it to appear after `Name in store` column.
+The extension does not work on IE. (yet).
 
 Uninstall
 -------
