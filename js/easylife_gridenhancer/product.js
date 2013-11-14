@@ -138,6 +138,7 @@ Easylife_GridEnhancer.Product.prototype = {
                 this.fields.splice(i, 1);
                 this.reloadFields();
                 this.reloadPositions();
+                this.setFieldsJson();
                 break;
             }
         }
