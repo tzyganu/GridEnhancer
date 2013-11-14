@@ -52,7 +52,6 @@ If you manually added columns in the product grid and they do not appear in the 
 Known issue(s):
 -------
 If you choose to add a column after the `Name` column and you look at the grid in a specific store then your new column will appear after the `Name` column and you cannot set it to appear after `Name in store` column.
-The extension does not work on IE. (yet).
 
 Uninstall
 -------
@@ -72,3 +71,8 @@ Run these queries on your database. Add table prefix if you have one:
 Bug Report
 ------
 <a href="https://github.com/tzyganu/GridEnhancer/issues">Please submit any bugs or feature requests here.</a>
+
+Lessons learned
+--------
+IE does not like it when you add a function called "delete" inside a prototype js "class".
+IE does not take into account the "selected" parameter when creating a select option using `new Option(label, value, selected)`
