@@ -1,0 +1,4 @@
+GridEnhancer
+============
+
+Magento Grid Enhancer
