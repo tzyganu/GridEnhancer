@@ -10,6 +10,8 @@ The Grid Enhancer extension allows you to manage the columns in the following gr
  - Customers grid
  - Product attributes grid
  - Catalog price rules grid
+ - Shopping cart price rules
+ - CMS Pages
 
 Other grids may follow.  
 Since in a web shop different admins need different information displayed on the grid, each admin can manage it's own grid.  

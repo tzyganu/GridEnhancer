@@ -348,9 +348,14 @@ abstract class Easylife_GridEnhancer_Model_Observer_Abstract extends Varien_Obje
         $config = array();
         $config['header'] = $options->label;
         $config['type'] = $options->type;
-        if ($options->type == 'options'){
+        if (in_array($options->type, array('options', 'multilevel-dropdown'))){
             if ((string)$options->source_model){
-                $config['options'] = $this->_getOptions(Mage::getSingleton((string)$options->source_model)->toOptionArray());
+                if ($options->type == 'options'){
+                    $config['options'] = $this->_getOptions(Mage::getSingleton((string)$options->source_model)->toOptionArray());
+                }
+                else {
+                    $config['options'] = Mage::getSingleton((string)$options->source_model)->toOptionArray();
+                }
             }
             else {
                 $source = (array)$options->source;

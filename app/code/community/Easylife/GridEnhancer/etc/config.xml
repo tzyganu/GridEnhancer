@@ -19,7 +19,7 @@
 <config>
     <modules>
         <Easylife_GridEnhancer>
-            <version>0.3.0</version>
+            <version>0.4.0</version>
         </Easylife_GridEnhancer>
     </modules>
     <global>
@@ -521,6 +521,257 @@
                     <action>index</action>
                 </request>
             </promo_catalog>
+
+            <promo_quote translate="form_header label">
+                <label>Shopping cart price rules</label>
+                <type>flat</type>
+                <entity_types>
+                    <promo_quote>
+                        <prefix>promo_quote__</prefix>
+                        <column_prefix />
+                    </promo_quote>
+                </entity_types>
+                <system_attributes>
+                    <rule_id translate="label" module="salesrule">
+                        <label>ID</label>
+                        <entity_type>promo_quote</entity_type>
+                    </rule_id>
+                    <name translate="label" module="salesrule">
+                        <label>Name</label>
+                        <entity_type>promo_quote</entity_type>
+                    </name>
+                    <coupon_code translate="label" module="salesrule">
+                        <label>Coupon code</label>
+                        <entity_type>promo_quote</entity_type>
+                    </coupon_code>
+                    <from_date translate="label" module="salesrule">
+                        <label>Date start</label>
+                        <entity_type>promo_quote</entity_type>
+                    </from_date>
+                    <to_date translate="label" module="salesrule">
+                        <label>Date expire</label>
+                        <entity_type>promo_quote</entity_type>
+                    </to_date>
+                    <is_active translate="label" module="salesrule">
+                        <label>Status</label>
+                        <entity_type>promo_quote</entity_type>
+                    </is_active>
+                    <rule_website translate="label" module="salesrule">
+                        <label>Website</label>
+                        <entity_type>promo_quote</entity_type>
+                    </rule_website>
+                </system_attributes>
+                <allowed_attributes>
+                    <description translate="label" module="salesrule">
+                        <label>Description</label>
+                        <type>text</type>
+                        <entity_type>promo_quote</entity_type>
+                    </description>
+                    <customer_group_ids translate="label" module="salesrule">
+                        <label>Customer Groups</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_customer_group</source_model>
+                        <entity_type>promo_quote</entity_type>
+                        <filter>0</filter>
+                        <sortable>0</sortable>
+                    </customer_group_ids>
+                    <coupon_type translate="label" module="salesrule">
+                        <label>Coupon</label>
+                        <type>options</type>
+                        <entity_type>promo_quote</entity_type>
+                        <source>
+                            <no_coupon translate="label" module="salesrule">
+                                <label>No Coupon</label>
+                                <value>1</value>
+                            </no_coupon>
+                            <coupon translate="label" module="salesrule">
+                                <label>Specific Coupon</label>
+                                <value>2</value>
+                            </coupon>
+                        </source>
+                    </coupon_type>
+                    <uses_per_coupon translate="label" module="salesrule">
+                        <label>Uses per Coupon</label>
+                        <type>number</type>
+                        <entity_type>promo_quote</entity_type>
+                    </uses_per_coupon>
+                    <uses_per_customer translate="label" module="salesrule">
+                        <label>Uses per Customer</label>
+                        <type>number</type>
+                        <entity_type>promo_quote</entity_type>
+                    </uses_per_customer>
+                    <is_rss translate="label" module="salesrule">
+                        <label>Public In RSS Feed</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>promo_quote</entity_type>
+                    </is_rss>
+                    <simple_action translate="label" module="salesrule">
+                        <label>Apply</label>
+                        <type>options</type>
+                        <entity_type>promo_quote</entity_type>
+                        <source>
+                            <by_percent translate="label" module="salesrule">
+                                <label>Percent of product price discount</label>
+                            </by_percent>
+                            <by_fixed translate="label" module="salesrule">
+                                <label>Fixed amount discount</label>
+                            </by_fixed>
+                            <cart_fixed translate="label" module="salesrule">
+                                <label>Fixed amount discount for whole cart</label>
+                            </cart_fixed>
+                            <buy_x_get_y translate="label" module="salesrule">
+                                <label>Buy X get Y free (discount amount is Y)</label>
+                            </buy_x_get_y>
+                        </source>
+                    </simple_action>
+                    <discount_amount translate="label" module="salesrule">
+                        <label>Discount amount</label>
+                        <type>number</type>
+                        <entity_type>promo_quote</entity_type>
+                    </discount_amount>
+                    <discount_qty translate="label" module="salesrule">
+                        <label>Maximum Qty Discount is Applied To</label>
+                        <type>number</type>
+                        <entity_type>promo_quote</entity_type>
+                    </discount_qty>
+                    <discount_step translate="label" module="salesrule">
+                        <label>Discount Qty Step (Buy X)</label>
+                        <type>number</type>
+                        <entity_type>promo_quote</entity_type>
+                    </discount_step>
+                    <apply_to_shipping translate="label" module="salesrule">
+                        <label>Apply to Shipping Amount</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>promo_quote</entity_type>
+                    </apply_to_shipping>
+                    <simple_free_shipping translate="label" module="salesrule">
+                        <label>Free Shipping</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>promo_quote</entity_type>
+                    </simple_free_shipping>
+                    <stop_rules_processing translate="label" module="salesrule">
+                        <label>Stop Further Rules Processing</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>promo_quote</entity_type>
+                    </stop_rules_processing>
+                </allowed_attributes>
+                <helper>easylife_gridenhancer/promo_quote</helper>
+                <acl_path>promo/quote/grid_enhancer</acl_path>
+                <manage_url>adminhtml/gridenhancer_index/index/mode/promo_quote</manage_url>
+                <container_type>Mage_Adminhtml_Block_Promo_Quote</container_type>
+                <form_header>Configure shopping cart rules grid</form_header>
+                <menu_path>promo/quote/grid_enhancer</menu_path>
+                <request>
+                    <module>admin</module>
+                    <controller>promo_quote</controller>
+                    <action>index</action>
+                </request>
+            </promo_quote>
+            <cms_page translate="form_header label">
+                <label>Pages</label>
+                <type>flat</type>
+                <entity_types>
+                    <cms_page>
+                        <prefix>cms_page__</prefix>
+                        <column_prefix />
+                    </cms_page>
+                </entity_types>
+                <system_attributes>
+                    <title translate="label" module="cms">
+                        <label>Title</label>
+                        <entity_type>cms_page</entity_type>
+                    </title>
+                    <identifier translate="label" module="cms">
+                        <label>Identifier</label>
+                        <entity_type>cms_page</entity_type>
+                    </identifier>
+                    <root_template translate="label" module="cms">
+                        <label>Layout</label>
+                        <entity_type>cms_page</entity_type>
+                    </root_template>
+                    <store_id translate="label" module="cms">
+                        <label>Store view</label>
+                        <entity_type>cms_page</entity_type>
+                    </store_id>
+                    <is_active translate="label" module="cms">
+                        <label>Status</label>
+                        <entity_type>cms_page</entity_type>
+                    </is_active>
+                    <creation_time translate="label" module="cms">
+                        <label>Date created</label>
+                        <entity_type>cms_page</entity_type>
+                    </creation_time>
+                    <update_time translate="label" module="cms">
+                        <label>Last modified</label>
+                        <entity_type>cms_page</entity_type>
+                    </update_time>
+                </system_attributes>
+                <allowed_attributes>
+                    <content_heading translate="label" module="cms">
+                        <label>Content heading</label>
+                        <type>text</type>
+                        <entity_type>cms_page</entity_type>
+                    </content_heading>
+                    <!--  is dangerous to allow content and layout update column-->
+                    <!--<content translate="label" module="cms">-->
+                        <!--<label>Content</label>-->
+                        <!--<type>text</type>-->
+                        <!--<entity_type>cms_page</entity_type>-->
+                    <!--</content>-->
+                    <!--<layout_update_xml translate="label" module="cms">-->
+                        <!--<label>Layout Update XML</label>-->
+                        <!--<type>text</type>-->
+                        <!--<entity_type>cms_page</entity_type>-->
+                    <!--</layout_update_xml>-->
+                    <custom_theme_from translate="label" module="cms">
+                        <label>Custom Design From</label>
+                        <type>date</type>
+                        <entity_type>cms_page</entity_type>
+                    </custom_theme_from>
+                    <custom_theme_to translate="label" module="cms">
+                        <label>Custom Design To</label>
+                        <type>date</type>
+                        <entity_type>cms_page</entity_type>
+                    </custom_theme_to>
+                    <custom_theme translate="label" module="cms">
+                        <label>Custom Theme</label>
+                        <type>multilevel-dropdown</type>
+                        <entity_type>cms_page</entity_type>
+                        <source_model>easylife_gridenhancer/adminhtml_source_design_theme</source_model>
+                    </custom_theme>
+                    <custom_root_template translate="label" module="cms">
+                        <label>Custom Layout</label>
+                        <type>options</type>
+                        <entity_type>cms_page</entity_type>
+                        <source_model>page/source_layout</source_model>
+                    </custom_root_template>
+                    <meta_keywords translate="label" module="cms">
+                        <label>Keywords</label>
+                        <type>text</type>
+                        <entity_type>cms_page</entity_type>
+                    </meta_keywords>
+                    <meta_description translate="label" module="cms">
+                        <label>Description</label>
+                        <type>text</type>
+                        <entity_type>cms_page</entity_type>
+                    </meta_description>
+                </allowed_attributes>
+                <helper>easylife_gridenhancer/cms_page</helper>
+                <acl_path>cms/page/grid_enhancer</acl_path>
+                <manage_url>adminhtml/gridenhancer_index/index/mode/cms_page</manage_url>
+                <container_type>Mage_Adminhtml_Block_Cms_Page</container_type>
+                <form_header>Cms pages grid</form_header>
+                <menu_path>cms/page/grid_enhancer</menu_path>
+                <request>
+                    <module>admin</module>
+                    <controller>cms_page</controller>
+                    <action>index</action>
+                </request>
+            </cms_page>
         </gridenhancer>
     </global>
     <admin>
@@ -578,6 +829,18 @@
                         <class>easylife_gridenhancer/observer_promo_catalog</class>
                         <method>addColumnsToGrid</method>
                     </easylife_gridenhancer_promo_catalog>
+
+                    <easylife_gridenhancer_promo_quote>
+                        <type>singleton</type>
+                        <class>easylife_gridenhancer/observer_promo_quote</class>
+                        <method>addColumnsToGrid</method>
+                    </easylife_gridenhancer_promo_quote>
+
+                    <easylife_gridenhancer_cms_page>
+                        <type>singleton</type>
+                        <class>easylife_gridenhancer/observer_cms_page</class>
+                        <method>addColumnsToGrid</method>
+                    </easylife_gridenhancer_cms_page>
 
                 </observers>
             </core_block_abstract_prepare_layout_before>

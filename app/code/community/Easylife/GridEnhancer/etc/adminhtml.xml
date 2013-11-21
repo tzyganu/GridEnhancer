@@ -71,8 +71,26 @@
                                 </easylife_gridenhancer>
                             </children>
                         </catalog>
+                        <quote>
+                            <children>
+                                <easylife_gridenhancer translate="title" module="easylife_gridenhancer">
+                                    <title>Manage shopping cart price rules grid columns.</title>
+                                </easylife_gridenhancer>
+                            </children>
+                        </quote>
                     </children>
                 </promo>
+                <cms>
+                    <children>
+                        <page>
+                            <chidlren>
+                                <easylife_gridenhancer translate="title" module="easylife_gridenhancer">
+                                    <title>Manage pages grid columns.</title>
+                                </easylife_gridenhancer>
+                            </chidlren>
+                        </page>
+                    </children>
+                </cms>
             </admin>
         </resources>
     </acl>

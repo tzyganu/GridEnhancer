@@ -1,3 +1,11 @@
+v0.4.0 - 2013-11-21
+========
+Features
+----------
+Added new configurable grids
+ - Shopping cart price rules
+ - CMS pages
+
 v0.3.0 - 2013-11-21
 ========
 
@@ -7,7 +15,7 @@ Bug fixes
 
 Features:
 -------
-Added new grids  
+Added new configurable grids
  - Customer grid
  - Product attribute grid
  - Catalog price rules grid
