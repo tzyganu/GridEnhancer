@@ -8,9 +8,9 @@ Bug fixes
 Features:
 -------
 Added new grids  
- - customer grid  
- - product attribute grid  
- - catalog price rules grid  
+ - Customer grid
+ - Product attribute grid
+ - Catalog price rules grid
 
 The configuration for any grid can be disabled for all admins from `System->Configuration`.  
 Added notification if you go over board with the number of columns.  
