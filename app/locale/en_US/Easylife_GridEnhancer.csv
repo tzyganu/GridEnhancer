@@ -4,6 +4,7 @@ After,After
 "Are you sure you want to do this?","Are you sure you want to do this?"
 "Attribute %s","Attribute %s"
 "Catalog discount rules","Catalog discount rules"
+"Cms pages grid","Cms pages grid"
 "Configuration cannot be empty","Configuration cannot be empty"
 "Configuration was deleted","Configuration was deleted"
 "Configuration was saved","Configuration was saved"
@@ -11,6 +12,7 @@ After,After
 "Configure catalog promotions grid","Configure catalog promotions grid"
 "Configure customer grid","Configure customer grid"
 "Configure product grid","Configure product grid"
+"Configure shopping cart rules grid","Configure shopping cart rules grid"
 "Customers grid","Customers grid"
 "Delete configuration","Delete configuration"
 "For the attributes grid there is no way to add columns between the existing columns because of the way it is built. Everything will be added at the beginning of the grid.","For the attributes grid there is no way to add columns between the existing columns because of the way it is built. Everything will be added at the beginning of the grid."
@@ -22,8 +24,12 @@ After,After
 "Manage attribute grid columns.","Manage attribute grid columns."
 "Manage catalog promo grid columns.","Manage catalog promo grid columns."
 "Manage customer grid columns.","Manage customer grid columns."
+"Manage pages grid columns.","Manage pages grid columns."
 "Manage product grid columns.","Manage product grid columns."
+"Manage shopping cart price rules grid columns.","Manage shopping cart price rules grid columns."
+Pages,Pages
 "Products attributes grid","Products attributes grid"
 "Products grid","Products grid"
 Reset,Reset
 Save,Save
+"Shopping cart price rules","Shopping cart price rules"
