@@ -25,6 +25,9 @@
                 <Mage_Catalog />
                 <Mage_Adminhtml />
                 <Mage_Admin />
+                <Mage_CatalogRule />
+                <Mage_Eav />
+                <Mage_Customer />
             </depends>
         </Easylife_GridEnhancer>
     </modules>

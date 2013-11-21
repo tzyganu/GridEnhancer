@@ -19,7 +19,7 @@
 <config>
     <modules>
         <Easylife_GridEnhancer>
-            <version>0.1.0</version>
+            <version>0.3.0</version>
         </Easylife_GridEnhancer>
     </modules>
     <global>
@@ -27,6 +27,11 @@
             <easylife_gridenhancer>
                 <class>Easylife_GridEnhancer_Block</class>
             </easylife_gridenhancer>
+            <adminhtml>
+                <rewrite>
+                    <customer_grid>Easylife_GridEnhancer_Block_Adminhtml_Rewrite_Customer_Grid</customer_grid>
+                </rewrite>
+            </adminhtml>
         </blocks>
         <models>
             <easylife_gridenhancer>
@@ -55,50 +60,467 @@
             </easylife_gridenhancer_setup>
         </resources>
         <gridenhancer>
-            <system_attributes>
-                <product>
+            <catalog_product translate="form_header label" module="easylife_gridenhancer">
+                <label>Products grid</label>
+                <type>eav</type>
+                <entity_types>
+                    <catalog_product>
+                        <collection>catalog/product_attribute_collection</collection>
+                        <prefix>catalog_product__</prefix>
+                        <column_prefix />
+                    </catalog_product>
+                </entity_types>
+                <system_attributes>
                     <entity_id translate="label" module="catalog">
                         <label>ID</label>
+                        <entity_type>catalog_product</entity_type>
                     </entity_id>
                     <name translate="label" module="catalog">
                         <label>Name</label>
+                        <entity_type>catalog_product</entity_type>
                     </name>
                     <type_id translate="label" module="catalog">
                         <label>Product type</label>
+                        <entity_type>catalog_product</entity_type>
                     </type_id>
                     <attribute_set_id translate="label" module="catalog">
                         <label>Attribute set</label>
+                        <entity_type>catalog_product</entity_type>
                     </attribute_set_id>
                     <sku translate="label" module="catalog">
                         <label>SKU</label>
+                        <entity_type>catalog_product</entity_type>
                     </sku>
                     <price translate="label" module="catalog">
                         <label>Price</label>
+                        <entity_type>catalog_product</entity_type>
                     </price>
                     <qty translate="label" module="catalog">
                         <label>Qty</label>
+                        <entity_type>catalog_product</entity_type>
                     </qty>
                     <visibility translate="label" module="catalog">
                         <label>Visibility</label>
+                        <entity_type>catalog_product</entity_type>
                     </visibility>
                     <status translate="label" module="catalog">
                         <label>Status</label>
+                        <entity_type>catalog_product</entity_type>
                     </status>
                     <websites translate="label" module="catalog">
                         <label>Websites</label>
+                        <entity_type>catalog_product</entity_type>
                     </websites>
-                </product>
-            </system_attributes>
-            <allowed_types>
-                <product>
+                </system_attributes>
+                <allowed_types>
                     <text />
                     <textarea />
                     <price />
                     <select />
                     <date />
                     <weight />
-                </product>
-            </allowed_types>
+                </allowed_types>
+                <helper>easylife_gridenhancer/product</helper>
+                <acl_path>catalog/products/grid_enhancer</acl_path>
+                <manage_url>adminhtml/gridenhancer_index/index/mode/catalog_product</manage_url>
+                <container_type>Mage_Adminhtml_Block_Catalog_Product</container_type>
+                <form_header>Configure product grid</form_header>
+                <menu_path>catalog/products/easylife_gridenhancer</menu_path>
+                <request>
+                    <module>admin</module>
+                    <controller>catalog_product</controller>
+                    <action>grid|index</action>
+                </request>
+            </catalog_product>
+
+            <customer translate="form_header label" module="easylife_gridenhancer">
+                <label>Customers grid</label>
+                <type>eav</type>
+                <entity_types>
+                    <customer>
+                        <collection>customer/attribute_collection</collection>
+                        <prefix>customer__</prefix>
+                        <column_prefix />
+                    </customer>
+                    <customer_address>
+                        <collection>customer/address_attribute_collection</collection>
+                        <prefix>customer_address__</prefix>
+                        <column_prefix>billing_</column_prefix>
+                    </customer_address>
+                </entity_types>
+                <system_attributes>
+                    <entity_id translate="label" module="customer">
+                        <label>ID</label>
+                        <column>entity_id</column>
+                        <entity_type>customer</entity_type>
+                    </entity_id>
+                    <name translate="label" module="customer">
+                        <label>Name</label>
+                        <column>name</column>
+                        <entity_type>customer</entity_type>
+                    </name>
+                    <email translate="label" module="customer">
+                        <label>E-mail</label>
+                        <column>email</column>
+                        <entity_type>customer</entity_type>
+                    </email>
+                    <group_id translate="label" module="customer">
+                        <label>Group</label>
+                        <column>group_id</column>
+                        <entity_type>customer</entity_type>
+                    </group_id>
+                    <telephone translate="label" module="customer">
+                        <label>Telephone</label>
+                        <column>Telephone</column>
+                        <entity_type>customer_address</entity_type>
+                    </telephone>
+                    <postcode translate="label" module="customer">
+                        <label>Zip</label>
+                        <column>billing_postcode</column>
+                        <entity_type>customer_address</entity_type>
+                    </postcode>
+                    <country_id translate="label" module="customer">
+                        <label>Country</label>
+                        <column>billing_country_id</column>
+                        <entity_type>customer_address</entity_type>
+                    </country_id>
+                    <region translate="label" module="customer">
+                        <label>State/Province</label>
+                        <column>billing_region</column>
+                        <entity_type>customer_address</entity_type>
+                    </region>
+                    <created_at translate="label" module="customer">
+                        <label>Customer since</label>
+                        <column>customer_since</column>
+                        <entity_type>customer</entity_type>
+                    </created_at>
+                    <website_id translate="label" module="customer">
+                        <label>Website</label>
+                        <column>website_id</column>
+                        <entity_type>customer</entity_type>
+                    </website_id>
+                </system_attributes>
+                <allowed_types>
+                    <text />
+                    <textarea />
+                    <price />
+                    <select />
+                    <date />
+                    <weight />
+                    <multiline />
+                </allowed_types>
+                <helper>easylife_gridenhancer/customer</helper>
+                <acl_path>customer/grid_enhancer</acl_path>
+                <manage_url>adminhtml/gridenhancer_index/index/mode/customer</manage_url>
+                <container_type>Mage_Adminhtml_Block_Customer</container_type>
+                <form_header>Configure customer grid</form_header>
+                <menu_path>customer/easylife_gridenhancer</menu_path>
+                <request>
+                    <module>admin</module>
+                    <controller>customer</controller>
+                    <action>grid|index</action>
+                </request>
+            </customer>
+
+
+            <catalog_product_attribute translate="form_header message label" module="easylife_gridenhancer">
+                <label>Products attributes grid</label>
+                <type>flat</type>
+                <entity_types>
+                    <catalog_product_attribute>
+                        <!--<collection>catalog/product_attribute_collection</collection>-->
+                        <prefix>catalog_product_attribute__</prefix>
+                        <column_prefix />
+                    </catalog_product_attribute>
+                </entity_types>
+                <system_attributes>
+                    <__nothing translate="label" module="easylife_gridenhancer">
+                        <label>--At the start of the grid--</label>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </__nothing>
+                    <!--<frontend_label translate="label" module="catalog">-->
+                        <!--<label>Attribute Label</label>-->
+                        <!--<entity_type>catalog_product_attribute</entity_type>-->
+                    <!--</frontend_label>-->
+                    <!--<is_required translate="label" module="catalog">-->
+                        <!--<label>Required</label>-->
+                        <!--<entity_type>catalog_product_attribute</entity_type>-->
+                    <!--</is_required>-->
+                    <!--<is_user_defined translate="label" module="catalog">-->
+                        <!--<label>System</label>-->
+                        <!--<entity_type>catalog_product_attribute</entity_type>-->
+                    <!--</is_user_defined>-->
+                    <!--<is_visible translate="label" module="catalog">-->
+                        <!--<label>Visible</label>-->
+                        <!--<entity_type>catalog_product_attribute</entity_type>-->
+                    <!--</is_visible>-->
+                    <!--<is_global translate="label" module="catalog">-->
+                        <!--<label>Scope</label>-->
+                        <!--<entity_type>catalog_product_attribute</entity_type>-->
+                    <!--</is_global>-->
+                    <!--<is_searchable translate="label" module="catalog">-->
+                        <!--<label>Searchable</label>-->
+                        <!--<entity_type>catalog_product_attribute</entity_type>-->
+                    <!--</is_searchable>-->
+                    <!--<is_filterable translate="label" module="catalog">-->
+                        <!--<label>Use in Layered Navigation</label>-->
+                        <!--<entity_type>catalog_product_attribute</entity_type>-->
+                    <!--</is_filterable>-->
+                    <!--<is_filterable translate="label" module="catalog">-->
+                        <!--<label>Use in Layered Navigation</label>-->
+                        <!--<entity_type>catalog_product_attribute</entity_type>-->
+                    <!--</is_filterable>-->
+                    <!--<is_comparable translate="label" module="catalog">-->
+                        <!--<label>Comparable</label>-->
+                        <!--<entity_type>catalog_product_attribute</entity_type>-->
+                    <!--</is_comparable>-->
+                </system_attributes>
+                <allowed_attributes>
+                    <frontend_input translate="label" module="catalog">
+                        <label>Catalog Input Type for Store Owner</label>
+                        <type>options</type>
+                        <source>
+                            <text translate="label" module="eav">
+                                <label>Text Field</label>
+                            </text>
+                            <textarea translate="label" module="eav">
+                                <label>Text Area</label>
+                            </textarea>
+                            <date translate="label" module="eav">
+                                <label>Date</label>
+                            </date>
+                            <boolean translate="label" module="eav">
+                                <label>Yes/No</label>
+                            </boolean>
+                            <multiselect translate="label" module="eav">
+                                <label>Multiple Select</label>
+                            </multiselect>
+                            <select translate="label" module="eav">
+                                <label>Dropdown</label>
+                            </select>
+                            <price translate="label" module="catalog">
+                                <label>Price</label>
+                            </price>
+                            <media_image translate="label" module="catalog">
+                                <label>Media image</label>
+                            </media_image>
+                            <gallery translate="label" module="catalog">
+                                <label>Gallery</label>
+                            </gallery>
+                        </source>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </frontend_input>
+                    <is_unique translate="label" module="catalog">
+                        <label>Unique</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </is_unique>
+                    <frontend_class translate="label" module="catalog">
+                        <label>Input Validation for Store Owner</label>
+                        <type>options</type>
+                        <source>
+                            <none translate="label" module="eav">
+                                <value></value>
+                                <label>None</label>
+                            </none>
+                            <validate_number translate="label" module="eav">
+                                <value>validate-number</value>
+                                <label>Decimal Number</label>
+                            </validate_number>
+                            <validate_digits translate="label" module="eav">
+                                <value>validate-digits</value>
+                                <label>Integer Number</label>
+                            </validate_digits>
+                            <validate_email translate="label" module="eav">
+                                <value>validate-email</value>
+                                <label>Email</label>
+                            </validate_email>
+                            <validate_url translate="label" module="eav">
+                                <value>validate-url</value>
+                                <label>URL</label>
+                            </validate_url>
+                            <validate_alpha translate="label" module="eav">
+                                <value>validate-alpha</value>
+                                <label>Letters</label>
+                            </validate_alpha>
+                            <validate_alphanum translate="label" module="eav">
+                                <value>validate-alphanum</value>
+                                <label>Letters (a-z, A-Z) or Numbers (0-9)</label>
+                            </validate_alphanum>
+                        </source>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </frontend_class>
+                    <apply_to translate="label" module="catalog">
+                        <label>Apply to</label>
+                        <type>text</type>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </apply_to>
+                    <is_visible_in_advanced_search translate="label" module="catalog">
+                        <label>Use in Advanced Search</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </is_visible_in_advanced_search>
+                    <is_filterable_in_search translate="label" module="catalog">
+                        <label>Use In Search Results Layered Navigation</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </is_filterable_in_search>
+                    <is_used_for_promo_rules translate="label" module="catalog">
+                        <label>Use for Promo Rule Conditions</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </is_used_for_promo_rules>
+                    <position translate="label" module="catalog">
+                        <label>Position</label>
+                        <type>number</type>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </position>
+                    <is_html_allowed_on_front translate="label" module="catalog">
+                        <label>Allow HTML Tags on Frontend</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </is_html_allowed_on_front>
+                    <is_visible_on_front translate="label" module="catalog">
+                        <label>Visible on Product View Page on Front-end</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </is_visible_on_front>
+                    <used_in_product_listing translate="label" module="catalog">
+                        <label>Used in Product Listing</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </used_in_product_listing>
+                    <used_for_sort_by translate="label" module="catalog">
+                        <label>Used for Sorting in Product Listing</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>catalog_product_attribute</entity_type>
+                    </used_for_sort_by>
+                </allowed_attributes>
+                <helper>easylife_gridenhancer/attribute</helper>
+                <acl_path>catalog/attributes/attributes/grid_enhancer</acl_path>
+                <manage_url>adminhtml/gridenhancer_index/index/mode/catalog_product_attribute</manage_url>
+                <container_type>Mage_Adminhtml_Block_Catalog_Product_Attribute</container_type>
+                <form_header>Configure attributes grid</form_header>
+                <menu_path>catalog/attributes/attribute/easylife_gridenhancer</menu_path>
+                <message>For the attributes grid there is no way to add columns between the existing columns because of the way it is built. Everything will be added at the beginning of the grid.</message>
+                <request>
+                    <module>admin</module>
+                    <controller>catalog_product_attribute</controller>
+                    <action>index</action>
+                </request>
+            </catalog_product_attribute>
+
+            <promo_catalog translate="form_header label">
+                <label>Catalog discount rules</label>
+                <type>flat</type>
+                <entity_types>
+                    <promo_catalog>
+                        <prefix>promo_catalog__</prefix>
+                        <column_prefix />
+                    </promo_catalog>
+                </entity_types>
+                <system_attributes>
+                    <rule_id translate="label" module="catalogrule">
+                        <label>ID</label>
+                        <entity_type>promo_catalog</entity_type>
+                    </rule_id>
+                    <name translate="label" module="catalogrule">
+                        <label>Name</label>
+                        <entity_type>promo_catalog</entity_type>
+                    </name>
+                    <from_date translate="label" module="catalogrule">
+                        <label>Date start</label>
+                        <entity_type>promo_catalog</entity_type>
+                    </from_date>
+                    <to_date translate="label" module="catalogrule">
+                        <label>Date expire</label>
+                        <entity_type>promo_catalog</entity_type>
+                    </to_date>
+                    <is_active translate="label" module="catalogrule">
+                        <label>Status</label>
+                        <entity_type>promo_catalog</entity_type>
+                    </is_active>
+                    <rule_website translate="label" module="catalogrule">
+                        <label>Website</label>
+                        <entity_type>promo_catalog</entity_type>
+                    </rule_website>
+                </system_attributes>
+                <allowed_attributes>
+                    <description translate="label" module="catalogrule">
+                        <label>Description</label>
+                        <type>text</type>
+                        <entity_type>promo_catalog</entity_type>
+                    </description>
+                    <customer_group_ids translate="label" module="catalogrule">
+                        <label>Customer Groups</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_customer_group</source_model>
+                        <entity_type>promo_catalog</entity_type>
+                        <filter>0</filter>
+                        <sortable>0</sortable>
+                    </customer_group_ids>
+                    <sort_order translate="label" module="catalogrule">
+                        <label>Priority</label>
+                        <type>number</type>
+                        <entity_type>promo_catalog</entity_type>
+                    </sort_order>
+                    <simple_action translate="label" module="catalogrule">
+                        <label>Action</label>
+                        <type>options</type>
+                        <entity_type>promo_catalog</entity_type>
+                        <source>
+                            <by_percent translate="label" module="catalogrule">
+                                <label>By Percentage of the Original Price</label>
+                            </by_percent>
+                            <by_fixed translate="label" module="catalogrule">
+                                <label>By Fixed Amount</label>
+                            </by_fixed>
+                            <to_percent translate="label" module="catalogrule">
+                                <label>To Percentage of the Original Price</label>
+                            </to_percent>
+                            <to_fixed translate="label" module="catalogrule">
+                                <label>To Fixed Amount</label>
+                            </to_fixed>
+                        </source>
+                    </simple_action>
+                    <discount_amount translate="label" module="catalogrule">
+                        <label>Discount amount</label>
+                        <type>number</type>
+                        <entity_type>promo_catalog</entity_type>
+                    </discount_amount>
+                    <sub_is_enable translate="label" module="catalogrule">
+                        <label>Enable Discount to Subproducts</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>promo_catalog</entity_type>
+                    </sub_is_enable>
+                    <stop_rules_processing translate="label" module="catalogrule">
+                        <label>Stop Further Rules Processing</label>
+                        <type>options</type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <entity_type>promo_catalog</entity_type>
+                    </stop_rules_processing>
+                </allowed_attributes>
+                <helper>easylife_gridenhancer/promo_catalog</helper>
+                <acl_path>promo/catalog/grid_enhancer</acl_path>
+                <manage_url>adminhtml/gridenhancer_index/index/mode/promo_catalog</manage_url>
+                <container_type>Mage_Adminhtml_Block_Promo_Catalog</container_type>
+                <form_header>Configure catalog promotions grid</form_header>
+                <menu_path>promo/catalog/grid_enhancer</menu_path>
+                <request>
+                    <module>admin</module>
+                    <controller>promo_catalog</controller>
+                    <action>index</action>
+                </request>
+            </promo_catalog>
         </gridenhancer>
     </global>
     <admin>
@@ -123,20 +545,40 @@
         <events>
             <catalog_product_collection_load_before>
                 <observers>
-                    <easylife_gridenhancer>
+                    <easylife_gridenhancer_product>
                         <type>singleton</type>
                         <class>easylife_gridenhancer/observer_product</class>
                         <method>addAttributesToCollection</method>
-                    </easylife_gridenhancer>
+                    </easylife_gridenhancer_product>
                 </observers>
             </catalog_product_collection_load_before>
+            <!-- TODO: maybe refactor to use one single observer-->
             <core_block_abstract_prepare_layout_before>
                 <observers>
-                    <easylife_gridenhancer>
+                    <easylife_gridenhancer_product>
                         <type>singleton</type>
                         <class>easylife_gridenhancer/observer_product</class>
                         <method>addColumnsToGrid</method>
-                    </easylife_gridenhancer>
+                    </easylife_gridenhancer_product>
+
+                    <easylife_gridenhancer_customer>
+                        <type>singleton</type>
+                        <class>easylife_gridenhancer/observer_customer</class>
+                        <method>addColumnsToGrid</method>
+                    </easylife_gridenhancer_customer>
+
+                    <easylife_gridenhancer_attribute>
+                        <type>singleton</type>
+                        <class>easylife_gridenhancer/observer_attribute</class>
+                        <method>addColumnsToGrid</method>
+                    </easylife_gridenhancer_attribute>
+
+                    <easylife_gridenhancer_promo_catalog>
+                        <type>singleton</type>
+                        <class>easylife_gridenhancer/observer_promo_catalog</class>
+                        <method>addColumnsToGrid</method>
+                    </easylife_gridenhancer_promo_catalog>
+
                 </observers>
             </core_block_abstract_prepare_layout_before>
         </events>
@@ -150,4 +592,11 @@
             </modules>
         </translate>
     </adminhtml>
+    <default>
+        <easylife_gridenhancer>
+            <settings>
+                <notice>5</notice>
+            </settings>
+        </easylife_gridenhancer>
+    </default>
 </config>

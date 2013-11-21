@@ -74,11 +74,14 @@ class Easylife_GridEnhancer_Model_Settings extends Mage_Core_Model_Abstract {
      * get settings by admin id
      * @access public
      * @param $adminId
+     * @param $gridCode
      * @return mixed
      * @author Marius Strajeru <marius.strajeru@gmail.com>
      */
-    public function loadByAdmin($adminId){
-        $collection = $this->getCollection()->addFieldToFilter('admin_id', $adminId);
+    public function loadByAdmin($adminId, $gridCode){
+        $collection = $this->getCollection()
+            ->addFieldToFilter('admin_id', $adminId)
+            ->addFieldToFilter('grid_code', $gridCode);
         return $collection->getFirstItem();
     }
 

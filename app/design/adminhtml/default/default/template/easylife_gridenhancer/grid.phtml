@@ -15,13 +15,11 @@
  * @license        http://opensource.org/licenses/mit-license.php MIT License
  */
 /**
- * template for product grid management
+ * template for grid management
  *
  * @category    Easylife
  * @package     Easylife_GridEnhancer
  * @author      Marius Strajeru <marius.strajeru@gmail.com>
- * @deprecated  starting 0.2.0
- * use grid.phtml instead
  */
 ?>
 <div class="content-header">
@@ -36,18 +34,18 @@
         <?php endif;?>
     </p>
 </div>
-    <div id="form_container">
-        <?php echo $this->getFormHtml();?>
-    </div>
+<div id="form_container">
+    <?php echo $this->getFormHtml();?>
+</div>
 <div style="display:none">
     <table>
         <tbody id="field_template">
-            <?php echo $this->getFieldTemplate();?>
+        <?php echo $this->getFieldTemplate();?>
         </tbody>
     </table>
 </div>
 <script type="text/javascript">
     var editForm = new varienForm('edit_form');
-    var gridEnahncer = new Easylife_GridEnhancer.Product('import_form', <?php echo $this->getConfig()?>);
+    var gridEnahncer = new Easylife_GridEnhancer.Grid('import_form', <?php echo $this->getConfig()?>);
 </script>
 

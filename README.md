@@ -1,11 +1,16 @@
 GridEnhancer
 ============
 
-Magento Grid Enhancer v0.1.0.
+Magento Grid Enhancer v0.3.0.
 
 What it does
 ----------
-The Grid Enhancer extension allows you to manage the columns in the product grid.  
+The Grid Enhancer extension allows you to manage the columns in the following grids:
+ - Products grid
+ - Customers grid
+ - Product attributes grid
+ - Catalog price rules grid
+
 Other grids may follow.  
 Since in a web shop different admins need different information displayed on the grid, each admin can manage it's own grid.  
 The guys in charge of marketing may want to see the special price.  
@@ -27,6 +32,8 @@ Click on the add column button on the top right and you should see 2 dropdowns. 
 The first one determines the attribute and the second the position.  
 <img src="http://i.imgur.com/n3ZuCab.png" alt=""/>
 
+It works the same for the other supported grids.
+
 You can add as many columns as you want. Just don't over do it.  
 When you are done click on `Save`.  
 If you get tired of the columns you have you can go to the same page and delete the configuration. This will make you see the default grid.  
@@ -40,18 +47,19 @@ A way to modify what other admins see will follow (maybe).
 Limitations
 --------
 Now all attributes can be shown in the grid. Image attributes are not yet supported.  
-Not all columns you add support sorting. This is a magento limitation. See the comment in  `Easylife_GridEnhancer_Model_Observer_Product::_getColumnConfig()`
+Not all columns you add support sorting. This is a magento limitation. See the comment in  `Easylife_GridEnhancer_Model_Observer_Abstract::_getColumnConfig()`
+Because of the way the attribute grid is constructed, you can use observers just to add columns at the beginning of the grid. I didn't want to rewrite that block also, so this is a limitation.
 
 Rewrite and conflicts
 ----------
-The extension does not rewrite any core classes.  
-The extension might conflict with other extensions that alter the product grid, or it may not work if you modified the product grid.  
-If the extensions that modify the product grid are properly written this should still work.  
-If you manually added columns in the product grid and they do not appear in the position field modify this section of the `config.xml` by adding your columns: Xpath: `config/gridenhancer/system_attributes`.
+The extension rewrites the customer grid block (`Mage_Adminhtml_Block_Customer_Grid`) in order to be able to add to collection the selected columns.
+The extension might conflict with other extensions that alter the grids that can be enhanced.
+If the extensions that modify the product grid (and other grids) are properly written this should still work.
+If you manually added columns in the grids and they do not appear in the position field modify this section of the `config.xml` by adding your columns: Xpath: `config/gridenhancer/{GRID_IDENTIFIER_HERE}/system_attributes`.
 
 Known issue(s):
 -------
-If you choose to add a column after the `Name` column and you look at the grid in a specific store then your new column will appear after the `Name` column and you cannot set it to appear after `Name in store` column.
+If you choose to add a column after the `Name` column in the product grid and you look at the grid in a specific store then your new column will appear after the `Name` column and you cannot set it to appear after `Name in store` column.
 
 Uninstall
 -------

@@ -21,76 +21,39 @@
  * @package     Easylife_GridEnhancer
  * @author      Marius Strajeru <marius.strajeru@gmail.com>
  */
-class Easylife_GridEnhancer_Helper_Product extends Mage_Core_Helper_Abstract {
+class Easylife_GridEnhancer_Helper_Product
+    extends Easylife_GridEnhancer_Helper_Abstract {
     /**
-     * path to system attributes
+     * grid identifier
      */
-    const XML_SYSTEM_ATTRIBUTES_PATH = 'global/gridenhancer/system_attributes/product';
-    /**
-     * path to allowed types
-     */
-    const XML_ALLOWED_TYPES_PATH = 'global/gridenhancer/allowed_types/product';
-    /**
-     * cache product attributes
-     * @var mixed
-     */
-    protected $_productAttributes = null;
+    const PRODUCT_GRID_IDENTIFIER = 'catalog_product';
 
     /**
      * get product attributes
-     * @access public
      * @param bool $withEmpty
      * @return mixed|null
      * @author Marius Strajeru <marius.strajeru@gmail.com>
+     * @deprecated starting 0.2.0
      */
     public function getProductAttributes($withEmpty = true){
-        if (is_null($this->_productAttributes)){
-            $collection = Mage::getResourceModel('catalog/product_attribute_collection')
-                ->addVisibleFilter()
-                ->addFieldToFilter('attribute_code', array('nin'=>$this->getSystemAttributes()))
-                ->addFieldToFilter('frontend_input', array('in'=>$this->getAllowedTypes()))
-                ->setOrder('frontend_label', 'asc');
-            ;
-            foreach ($collection as $attribute){
-                $this->_productAttributes[] = array(
-                    'label'=>$attribute->getFrontendLabel(),
-                    'value'=>$attribute->getAttributeCode()
-                );
-            }
-        }
-        $attributes = $this->_productAttributes;
-        if ($withEmpty){
-            array_unshift($attributes, array('label'=>'','value'=>''));
-        }
-        return $attributes;
+        return $this->getAttributes($withEmpty);
     }
-
     /**
-     * get system attributes
+     * implementation of the abstract method
      * @access public
-     * @param bool $withNames
-     * @return array
+     * @return mixed|string
      * @author Marius Strajeru <marius.strajeru@gmail.com>
      */
-    public function getSystemAttributes($withNames = false){
-        $codes = (array)Mage::getConfig()->getNode(self::XML_SYSTEM_ATTRIBUTES_PATH);
-        if (!$withNames){
-            return array_keys($codes);
-        }
-        $attributes = array();
-        foreach ($codes as $code => $data){
-            $attributes[$code] = (string)$data->label;
-        }
-        return $attributes;
+    public function getGridIdentifier(){
+        return self::PRODUCT_GRID_IDENTIFIER;
     }
-
     /**
-     * get allowed types
-     * access public
-     * @return array
+     * get config path to helper
+     * @access public
+     * @return string
      * @author Marius Strajeru <marius.strajeru@gmail.com>
      */
-    public function getAllowedTypes(){
-        return array_keys((array)Mage::getConfig()->getNode(self::XML_ALLOWED_TYPES_PATH));
+    public static function getHelperPath(){
+        return Easylife_GridEnhancer_Helper_Abstract::XML_ROOT_PATH.'catalog_product/helper';
     }
 }

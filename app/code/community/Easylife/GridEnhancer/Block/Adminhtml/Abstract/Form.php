@@ -21,7 +21,7 @@
  * @package     Easylife_GridEnhancer
  * @author      Marius Strajeru <marius.strajeru@gmail.com>
  */
-class Easylife_GridEnhancer_Block_Adminhtml_Product_Form
+class Easylife_GridEnhancer_Block_Adminhtml_Abstract_Form
     extends Mage_Adminhtml_Block_Widget_Form {
     /**
      * prepare the form
@@ -31,12 +31,12 @@ class Easylife_GridEnhancer_Block_Adminhtml_Product_Form
      */
     protected function _prepareForm(){
         $form = new Varien_Data_Form(
-            array('id' => 'edit_form', 'action' => $this->getUrl('adminhtml/gridenhancer_product/save'), 'method' => 'post')
+            array('id' => 'edit_form', 'action' => $this->getActionUrl(), 'method' => 'post')
         );
         $this->setForm($form);
         $form->setUseContainer(true);
 
-        $fieldset = $form->addFieldset('import_form', array('legend'=>Mage::helper('easylife_gridenhancer')->__('Configure products grid')));
+        $fieldset = $form->addFieldset('import_form', array('legend'=>$this->getFieldsetLegend()));
         $fieldset->addField('fields', 'hidden', array(
             'name'      =>'fields',
         ));

@@ -15,14 +15,21 @@
  * @license        http://opensource.org/licenses/mit-license.php MIT License
  */
 /**
- * field renderer for position setting
+ * attribute observer
  *
  * @category    Easylife
  * @package     Easylife_GridEnhancer
  * @author      Marius Strajeru <marius.strajeru@gmail.com>
- * @deprecated  after 0.2.0
  */
-class Easylife_GridEnhancer_Block_Adminhtml_Helper_Product_Column
-    extends Easylife_GridEnhancer_Block_Adminhtml_Helper_Column {
-
+class Easylife_GridEnhancer_Model_Observer_Attribute
+    extends Easylife_GridEnhancer_Model_Observer_Abstract{
+    /**
+     * get helper name
+     * @access protected
+     * @return string
+     * @author Marius Strajeru <marius.strajeru@gmail.com>
+     */
+    protected function _getHelperName(){
+        return (string)Mage::getConfig()->getNode(Easylife_GridEnhancer_Helper_Attribute::getHelperPath());
+    }
 }

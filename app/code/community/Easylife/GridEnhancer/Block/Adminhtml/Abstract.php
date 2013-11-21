@@ -15,14 +15,23 @@
  * @license        http://opensource.org/licenses/mit-license.php MIT License
  */
 /**
- * form container
+ * general admin block
  *
  * @category    Easylife
  * @package     Easylife_GridEnhancer
  * @author      Marius Strajeru <marius.strajeru@gmail.com>
  */
-class Easylife_GridEnhancer_Block_Adminhtml_Product
+class Easylife_GridEnhancer_Block_Adminhtml_Abstract
     extends Mage_Adminhtml_Block_Widget_Form_Container {
+    /**
+     * path to notice config
+     */
+    const XML_NOTICE_PATH = 'easylife_gridenhancer/settings/notice';
+    /**
+     * block helper
+     * @var Easylife_GridEnhancer_Helper_Abstract
+     */
+    protected $_helper;
     /**
      * constructor
      * @access public
@@ -31,10 +40,83 @@ class Easylife_GridEnhancer_Block_Adminhtml_Product
      */
     public function __construct(){
         parent::__construct();
-        $this->_blockGroup = 'easylife_gridenhancer';
-        $this->_controller = 'adminhtml';
-        $this->_mode = 'product';
-        $this->setTemplate('easylife_gridenhancer/product.phtml');
+        $this->_objectId   = 'mode';
+        $this->_blockGroup = $this->getBlockGroup();
+        $this->_controller = $this->getControllerName();
+        $this->_mode = $this->getMode();
+    }
+
+    /**
+     * get helper asociated to the block
+     * @access public
+     * @return Easylife_GridEnhancer_Helper_Abstract
+     * @throws Easylife_GridEnhancer_Exception
+     * @author Marius Strajeru <marius.strajeru@gmail.com>
+     */
+    public function getGridHelper(){
+        if (is_null($this->_helper)){
+            $mode = $this->getHelperName();
+            if (empty($mode)){
+                throw new Easylife_GridEnhancer_Exception(Mage::helper('easylife_gridenhancer')->__('Helper not set'));
+            }
+            $helperPath = Easylife_GridEnhancer_Helper_Abstract::XML_ROOT_PATH.$mode.'/helper';
+            $helperAlias = Mage::getConfig()->getNode($helperPath);
+            $helper = Mage::helper($helperAlias);
+            if (!$helper){
+                throw new Easylife_GridEnhancer_Exception(Mage::helper('easylife_gridenhancer')->__('Helper not set'));
+            }
+            $this->_helper = $helper;
+        }
+        return $this->_helper;
+    }
+
+    /**
+     * get block group
+     * can be overwritten in children
+     * @access public
+     * @return string
+     * @author Marius Strajeru <marius.strajeru@gmail.com>
+     */
+    public function getBlockGroup(){
+        return 'easylife_gridenhancer';
+    }
+    /**
+     * get controller name
+     * can be overwritten in children
+     * @access public
+     * @return string
+     * @author Marius Strajeru <marius.strajeru@gmail.com>
+     */
+    public function getControllerName(){
+        return 'adminhtml';
+    }
+
+    /**
+     * get system attributes
+     * @access public
+     * @return mixed
+     * @author Marius Strajeru <marius.strajeru@gmail.com>
+     */
+    public function getSystemAttributes(){
+        return $this->getGridHelper()->getSystemAttributes(null, true);
+    }
+    /**
+     * get al available options
+     * @access public
+     * @return mixed
+     * @author Marius Strajeru <marius.strajeru@gmail.com>
+     */
+    public function getAllOptions(){
+        return $this->getGridHelper()->getAttributes(true);
+    }
+    /**
+     * get save url
+     * @access public
+     * @return mixed
+     * @author Marius Strajeru <marius.strajeru@gmail.com>
+     */
+    public function getSaveActionUrl(){
+        return $this->getGridHelper()->getSaveActionUrl();
     }
 
     /**
@@ -48,22 +130,21 @@ class Easylife_GridEnhancer_Block_Adminhtml_Product
     }
 
     /**
-     * get header text
+     * get header text for the form
      * @access public
      * @return string
      * @author Marius Strajeru <marius.strajeru@gmail.com>
      */
     public function getHeaderText(){
-        return Mage::helper('easylife_gridenhancer')->__('Configure products grid');
+        return $this->getGridHelper()->getHeaderText();
     }
-
     /**
      * add buttons
      * @access protected
-     * @return Easylife_GridEnhancer_Block_Adminhtml_Product
+     * @return Easylife_GridEnhancer_Block_Adminhtml_Abstract
      * @author Marius Strajeru <marius.strajeru@gmail.com>
      */
-    protected function _prepareLayout(){
+    protected function _beforeToHtml(){
         $this->setChild('reset_button',
             $this->getLayout()
                 ->createBlock('adminhtml/widget_button')
@@ -99,8 +180,12 @@ class Easylife_GridEnhancer_Block_Adminhtml_Product
                     'class' => 'add add-field'
                 ))
         );
-        if ($this->_blockGroup && $this->_controller && $this->_mode) {
-            $this->setChild('form', $this->getLayout()->createBlock($this->_blockGroup . '/' . $this->_controller . '_' . $this->_mode . '_form'));
+        if ($this->_blockGroup && $this->_controller) {
+            $form = $this->getLayout()->createBlock($this->_blockGroup . '/' . $this->_controller . '_' . 'abstract_form');
+            $form->setActionUrl($this->getSaveActionUrl());
+            $form->setFieldsetLegend($this->getHeaderText());
+            $form->setMode($this->getMode());
+            $this->setChild('form', $form);
         }
         return $this;
     }
@@ -141,7 +226,6 @@ class Easylife_GridEnhancer_Block_Adminhtml_Product
     public function getDeleteButtonHtml(){
         return $this->getChildHtml('delete');
     }
-
     /**
      * get grid config
      * @access public
@@ -150,7 +234,7 @@ class Easylife_GridEnhancer_Block_Adminhtml_Product
      */
     public function getConfig(){
         $config = array();
-        $config['system_attributes']    = Mage::helper('easylife_gridenhancer/product')->getSystemAttributes(true);
+        $config['system_attributes']    = $this->getSystemAttributes();
         $config['position_identifier']  = '.field-position';
         $config['field_identifier']     = '.grid-field';
         $config['delete_identifier']    = 'button.delete';
@@ -158,13 +242,12 @@ class Easylife_GridEnhancer_Block_Adminhtml_Product
         $config['current']              = $this->getSettings()->getConfiguration();
         $config['field_template']       = 'field_template';
         $config['main_field']           = 'fields';
-        $config['all_options']          = Mage::helper('easylife_gridenhancer/product')->getProductAttributes(true);
-        $config['notice_at']            = 5;//TODO: make this configurable
+        $config['all_options']          = $this->getAllOptions();
+        $config['notice_at']            = (int)Mage::getStoreConfig(self::XML_NOTICE_PATH, 0);
         $config['notice_message']       = Mage::helper('easylife_gridenhancer')->__("Hold on there buddy!\nDon't you think that's enough?\nYou will make the grid unreadable!");
 
         return Mage::helper('core')->jsonEncode($config);
     }
-
     /**
      * get field template
      * @access public
@@ -172,9 +255,10 @@ class Easylife_GridEnhancer_Block_Adminhtml_Product
      * @author Marius Strajeru <marius.strajeru@gmail.com>
      */
     public function getFieldTemplate(){
-        $className = Mage::getConfig()->getBlockClassName('easylife_gridenhancer/adminhtml_helper_product_column');
+        $className = Mage::getConfig()->getBlockClassName('easylife_gridenhancer/adminhtml_helper_column');
+        //instantiate directly
+        //createBlock allows only Mage_Core_Block_Abstract children to be instantiated
         $element = new $className();
-        //dummy form
         $form = new Varien_Data_Form();
         $element->setForm($form);
         $element->setName('field[{{id}}]');
@@ -184,18 +268,9 @@ class Easylife_GridEnhancer_Block_Adminhtml_Product
         $element->setId('field_{{id}}');
         $element->setHtmlContainerId('field_container_{{id}}');
         $element->setContainerId('field_container1_{{id}}');
+        $element->setValues($this->getAllOptions());
         $container = Mage::app()->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset_element');
         $container->setElement($element);
         return $container->render($element);
-    }
-
-    /**
-     * get the delete url
-     * @access public
-     * @return string
-     * @author Marius Strajeru <marius.strajeru@gmail.com>
-     */
-    public function getDeleteUrl(){
-        return Mage::helper('adminhtml')->getUrl('adminhtml/gridenhancer_product/delete');
     }
 }

@@ -24,17 +24,14 @@
  */
 -->
 <config>
-    <adminhtml_gridenhancer_product_edit>
+    <adminhtml_gridenhancer_index_edit>
         <reference name="head">
             <action method="addJs">
-                <js>easylife_gridenhancer/product.js</js>
+                <js>easylife_gridenhancer/grid.js</js>
             </action>
         </reference>
-        <reference name="menu">
-            <action method="setActive"><active>catalog/product/easylife_gridenhancer</active></action>
-        </reference>
         <reference name="content">
-            <block type="easylife_gridenhancer/adminhtml_product" template="easylife_gridenhancer/product.phtml" name="product_grid" as="product_grid" />
+            <block type="easylife_gridenhancer/adminhtml_abstract" template="easylife_gridenhancer/grid.phtml" name="manage_grid" as="manage_grid" />
         </reference>
-    </adminhtml_gridenhancer_product_edit>
+    </adminhtml_gridenhancer_index_edit>
 </config>

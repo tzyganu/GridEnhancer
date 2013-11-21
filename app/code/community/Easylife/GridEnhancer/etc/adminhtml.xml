@@ -21,6 +21,17 @@
         <resources>
             <admin>
                 <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <easylife_gridenhancer translate="title" module="easylife_gridenhancer">
+                                        <title>Grid enhancer.</title>
+                                    </easylife_gridenhancer>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
                     <catalog>
                         <children>
                             <products>
@@ -30,26 +41,39 @@
                                     </easylife_gridenhancer>
                                 </children>
                             </products>
+                            <attributes>
+                                <children>
+                                    <attributes>
+                                        <children>
+                                            <easylife_gridenhancer translate="title" module="easylife_gridenhancer">
+                                                <title>Manage attribute grid columns.</title>
+                                            </easylife_gridenhancer>
+                                        </children>
+                                    </attributes>
+                                </children>
+                            </attributes>
                         </children>
                     </catalog>
                 </children>
+                <customer>
+                    <children>
+                        <easylife_gridenhancer translate="title" module="easylife_gridenhancer">
+                            <title>Manage customer grid columns.</title>
+                        </easylife_gridenhancer>
+                    </children>
+                </customer>
+                <promo>
+                    <children>
+                        <catalog>
+                            <children>
+                                <easylife_gridenhancer translate="title" module="easylife_gridenhancer">
+                                    <title>Manage catalog promo grid columns.</title>
+                                </easylife_gridenhancer>
+                            </children>
+                        </catalog>
+                    </children>
+                </promo>
             </admin>
         </resources>
     </acl>
-    <!-- Maybe not the best idea to add a menu item -->
-    <!--<menu>
-        <catalog>
-            <children>
-                <products>
-                    <children>
-                        <easylife_gridenhancer translate="title" module="easylife_gridenhancer">
-                            <title>Manage product grid columns.</title>
-                            <action>adminhtml/gridenhancer_product</action>
-                            <sort_order>10</sort_order>
-                        </easylife_gridenhancer>
-                    </children>
-                </products>
-            </children>
-        </catalog>
-    </menu>-->
 </config>

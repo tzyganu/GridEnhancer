@@ -1,3 +1,4 @@
+<?php
 /**
  * Easylife_GridEnhancer extension
  *
@@ -12,11 +13,14 @@
  * @package        Easylife_GridEnhancer
  * @copyright      Copyright (c) 2013
  * @license        http://opensource.org/licenses/mit-license.php MIT License
- * @deprecated     starting 0.2.0
  */
+/**
+ * module exception class
+ *
+ * @category    Easylife
+ * @package     Easylife_GridEnhancer
+ * @author      Marius Strajeru <marius.strajeru@gmail.com>
+ */
+class Easylife_GridEnhancer_Exception extends Mage_Core_Exception {
 
-if(typeof Easylife_GridEnhancer=='undefined') {
-    var Easylife_GridEnhancer = {};
 }
-Easylife_GridEnhancer.Product = Class.create(Easylife_GridEnhancer.Grid);
-

@@ -15,14 +15,20 @@
  * @license        http://opensource.org/licenses/mit-license.php MIT License
  */
 /**
- * field renderer for position setting
+ * install script
+ * create settings table
  *
  * @category    Easylife
  * @package     Easylife_GridEnhancer
  * @author      Marius Strajeru <marius.strajeru@gmail.com>
- * @deprecated  after 0.2.0
  */
-class Easylife_GridEnhancer_Block_Adminhtml_Helper_Product_Column
-    extends Easylife_GridEnhancer_Block_Adminhtml_Helper_Column {
-
-}
+$this->startSetup();
+$this->getConnection()
+    ->addColumn($this->getTable('easylife_gridenhancer/settings'), 'grid_code', array(
+        'type'      => Varien_Db_Ddl_Table::TYPE_TEXT,
+        'length'    => 255,
+        'nullable'  => false,
+        'comment'   => 'Grid identifier',
+        'default'   => Easylife_GridEnhancer_Helper_Product::PRODUCT_GRID_IDENTIFIER
+    ));
+$this->endSetup();

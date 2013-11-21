@@ -15,36 +15,36 @@
  * @license        http://opensource.org/licenses/mit-license.php MIT License
  */
 /**
- * Settings collection resource model
+ * attribute helper
  *
  * @category    Easylife
  * @package     Easylife_GridEnhancer
  * @author      Marius Strajeru <marius.strajeru@gmail.com>
  */
-class Easylife_GridEnhancer_Model_Resource_Settings_Collection extends Mage_Core_Model_Resource_Db_Collection_Abstract {
+class Easylife_GridEnhancer_Helper_Attribute
+    extends Easylife_GridEnhancer_Helper_Abstract {
     /**
-     * constructor
+     * grid identifier
+     */
+    const ATTRIBUTE_GRID_IDENTIFIER = 'catalog_product_attribute';
+
+    /**
+     * implementation of the abstract method
      * @access public
-     * @return void
+     * @return mixed|string
      * @author Marius Strajeru <marius.strajeru@gmail.com>
      */
-    public function _construct() {
-        parent::_construct();
-        $this->_init('easylife_gridenhancer/settings');
+    public function getGridIdentifier(){
+        return self::ATTRIBUTE_GRID_IDENTIFIER;
     }
+
     /**
-     * Get SQL for get record count.
-     * Extra GROUP BY strip added.
-     * you're never going to use it.
-     * I don't know why I added it.
-     *
+     * get config path to helper
      * @access public
-     * @return Varien_Db_Select
+     * @return string
      * @author Marius Strajeru <marius.strajeru@gmail.com>
      */
-    public function getSelectCountSql() {
-        $countSelect = parent::getSelectCountSql();
-        $countSelect->reset(Zend_Db_Select::GROUP);
-        return $countSelect;
+    public static function getHelperPath(){
+        return Easylife_GridEnhancer_Helper_Abstract::XML_ROOT_PATH.'catalog_product_attribute/helper';
     }
 }
